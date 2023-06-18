@@ -1,0 +1,31 @@
+TARGET(elf32-lc-3.2)
+ENTRY(_start)
+
+MEMORY {
+    ram (rwx) : ORIGIN = 0x30000000, LENGTH = 0xc0000000
+}
+
+SECTIONS {
+
+    .startup :{
+        startup.o(.startup)
+    } >ram
+
+    .text :{
+        *(.text)
+        *(.text.*)
+    } >ram
+
+    .data :{
+        *(.data)
+        *(.rodata)
+        *(.data.*)
+        *(.rodata.*)
+    } >ram
+
+    .bss :{
+        *(.bss)
+        *(.bss.*)
+        *(COMMON)
+    }
+}
