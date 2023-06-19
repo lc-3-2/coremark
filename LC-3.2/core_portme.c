@@ -32,7 +32,9 @@
 */
 CORETIMETYPE barebones_clock() {
 	// FIXME: We don't have any way to measure the time
-	return 0;
+	static ee_u32 t = 0;
+	t++;
+	return t;
 }
 /* Define : TIMER_RES_DIVIDER
 	Divider to trade off timer resolution and total time that can be measured.
