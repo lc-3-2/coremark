@@ -21,11 +21,8 @@ SECTIONS {
         *(.rodata)
         *(.data.*)
         *(.rodata.*)
-    } >ram
-
-    .bss :{
         *(.bss)
         *(.bss.*)
         *(COMMON)
-    }
+    } >ram
 }
