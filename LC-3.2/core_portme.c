@@ -33,7 +33,7 @@
 CORETIMETYPE barebones_clock() {
 	// FIXME: We don't have any way to measure the time
 	static ee_u32 t = 0;
-	t++;
+	t += 10;
 	return t;
 }
 /* Define : TIMER_RES_DIVIDER
