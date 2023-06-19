@@ -26,5 +26,4 @@ _start:
     ADD SP, SP, 12
 
     ; Die
-    BREAK
     HALT
