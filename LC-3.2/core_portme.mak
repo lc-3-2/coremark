@@ -16,7 +16,9 @@ AS		= llvm-mc
 #	Use this flag to define compiler options. Note, you can add compiler options from the command line using XCFLAGS="other flags"
 PORT_CFLAGS = \
 	--target=lc_3.2 -g -O2 \
-	-mllvm -lc_3.2-use-libcall-for-cmp
+	-mllvm -lc_3.2-use-libcall-for-cmp \
+	-mllvm -lc_3.2-use-r4 -mllvm -lc_3.2-use-r7 \
+	-mllvm -verify-machineinstrs
 FLAGS_STR = "$(PORT_CFLAGS) $(XCFLAGS) $(XLFLAGS) $(LFLAGS_END)"
 CFLAGS = $(PORT_CFLAGS) -I$(PORT_DIR) -I. -DFLAGS_STR=\"$(FLAGS_STR)\"
 #Flag : LFLAGS_END
