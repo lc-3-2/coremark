@@ -16,11 +16,17 @@ SECTIONS {
         *(.text.*)
     } >ram
 
+    .rodata :{
+        *(.rodata)
+        *(.rodata.*)
+    } >ram
+
     .data :{
         *(.data)
-        *(.rodata)
         *(.data.*)
-        *(.rodata.*)
+    } >ram
+
+    .bss :{
         *(.bss)
         *(.bss.*)
         *(COMMON)
