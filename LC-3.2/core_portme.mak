@@ -17,7 +17,7 @@ AS		= llvm-mc
 PORT_CFLAGS = \
 	--target=lc_3.2 -g -O2 \
 	-ffunction-sections -fdata-sections \
-	-mllvm -lc_3.2-use-libcall-for-cmp \
+	-mllvm -lc_3.2-use-libcall-for-cmp -mllvm -lc_3.2-max-repeated-add=2 \
 	-mllvm -lc_3.2-use-r4 -mllvm -lc_3.2-use-r7 \
 	-mllvm -verify-machineinstrs
 FLAGS_STR = "$(PORT_CFLAGS) $(XCFLAGS) $(XLFLAGS) $(LFLAGS_END)"
