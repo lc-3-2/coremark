@@ -31,10 +31,8 @@
 	Sample implementation for standard time.h and windows.h definitions included.
 */
 CORETIMETYPE barebones_clock() {
-	// FIXME: We don't have any way to measure the time
-	static ee_u32 t = 0;
-	t += 10;
-	return t;
+	static volatile ee_u32 *const REG_CURTIME = (ee_u32 *)0xf0000018;
+	return *REG_CURTIME;
 }
 /* Define : TIMER_RES_DIVIDER
 	Divider to trade off timer resolution and total time that can be measured.
