@@ -15,7 +15,7 @@ AS		= llvm-mc
 # Flag : CFLAGS
 #	Use this flag to define compiler options. Note, you can add compiler options from the command line using XCFLAGS="other flags"
 PORT_CFLAGS = \
-	--target=lc_3.2-unknown-none -g -O2 \
+	--target=lc_3.2-none -g -O2 \
 	-ffunction-sections -fdata-sections \
 	-mllvm -lc_3.2-max-repeated-ops=3 \
 	-mllvm -lc_3.2-use-r4 -mllvm -lc_3.2-use-r7 \
@@ -31,7 +31,7 @@ LFLAGS_END = -T$(PORT_DIR)/ldscript
 SEPARATE_COMPILE=1
 
 OBJOUT 	= -o
-LFLAGS 	= --target=lc_3.2-unknown-none -nostdlib -Wl,--gc-sections
+LFLAGS 	= --target=lc_3.2-none -nostdlib -Wl,--gc-sections
 ASFLAGS = --arch=lc-3.2 --filetype=obj
 OFLAG 	= -o
 COUT 	= -c
