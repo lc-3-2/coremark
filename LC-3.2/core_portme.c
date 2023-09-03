@@ -8,6 +8,8 @@
 #include "coremark.h"
 #include "core_portme.h"
 
+#include <sys/times.h>
+
 #if VALIDATION_RUN
 	volatile ee_s32 seed1_volatile=0x3415;
 	volatile ee_s32 seed2_volatile=0x3415;
@@ -31,8 +33,7 @@
 	Sample implementation for standard time.h and windows.h definitions included.
 */
 CORETIMETYPE barebones_clock() {
-	static volatile ee_u32 *const REG_CURTIME = (ee_u32 *)0xf0000018;
-	return *REG_CURTIME;
+	return times(NULL);
 }
 /* Define : TIMER_RES_DIVIDER
 	Divider to trade off timer resolution and total time that can be measured.
@@ -43,7 +44,7 @@ CORETIMETYPE barebones_clock() {
 #define GETMYTIME(_t) (*_t=barebones_clock())
 #define MYTIMEDIFF(fin,ini) ((fin)-(ini))
 #define TIMER_RES_DIVIDER 1
-#define CLOCKS_PER_SEC 1
+#define CLOCKS_PER_SEC 1000
 #define EE_TICKS_PER_SEC (CLOCKS_PER_SEC / TIMER_RES_DIVIDER)
 
 /** Define Host specific (POSIX), or target specific global time variables. */

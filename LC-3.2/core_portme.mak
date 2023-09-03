@@ -16,6 +16,7 @@ AS		= llvm-mc
 #	Use this flag to define compiler options. Note, you can add compiler options from the command line using XCFLAGS="other flags"
 PORT_CFLAGS = \
 	--target=lc_3.2-none -g -O2 \
+	--sysroot=$(shell lc32newlib-sysroot) \
 	-ffunction-sections -fdata-sections \
 	-mllvm -lc_3.2-max-repeated-ops=3 \
 	-mllvm -lc_3.2-use-r4 -mllvm -lc_3.2-use-r7 \
@@ -25,13 +26,14 @@ CFLAGS = $(PORT_CFLAGS) -I$(PORT_DIR) -I. -DFLAGS_STR=\"$(FLAGS_STR)\"
 #Flag : LFLAGS_END
 #	Define any libraries needed for linking or other flags that should come at the end of the link line (e.g. linker scripts).
 #	Note : On certain platforms, the default clock_gettime implementation is supported but requires linking of librt.
-LFLAGS_END = -T$(PORT_DIR)/ldscript
+LFLAGS_END = -Tlc32Sim.ld
 # Flag : SEPARATE_COMPILE
 # You must also define below how to create an object file, and how to link.
 SEPARATE_COMPILE=1
 
 OBJOUT 	= -o
-LFLAGS 	= --target=lc_3.2-none -nostdlib -Wl,--gc-sections
+LFLAGS 	= --target=lc_3.2-none -Wl,--gc-sections \
+	--sysroot=$(shell lc32newlib-sysroot)
 ASFLAGS = --arch=lc-3.2 --filetype=obj
 OFLAG 	= -o
 COUT 	= -c
@@ -39,8 +41,7 @@ COUT 	= -c
 PORT_CFILES = \
 	$(PORT_DIR)/core_portme \
 	$(PORT_DIR)/ee_printf
-PORT_SFILES = \
-	$(PORT_DIR)/startup
+PORT_SFILES =
 PORT_SRCS = $(addsuffix .c, $(PORT_CFILES)) $(addsuffix .s, $(PORT_SFILES))
 PORT_OBJS = $(addprefix $(OPATH), $(addsuffix $(OEXT), $(PORT_CFILES) $(PORT_SFILES)))
 vpath %.c $(PORT_DIR)
