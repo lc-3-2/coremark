@@ -23,22 +23,26 @@
 	and implementation of functions thereof.
 */
 #ifndef HAS_TIME_H
+#define HAS_TIME_H 1
 #endif
 /* Configuration : USE_CLOCK
 	Define to 1 if platform has the time.h header file,
 	and implementation of functions thereof.
 */
 #ifndef USE_CLOCK
+#define USE_CLOCK 1
 #endif
 /* Configuration : HAS_STDIO
 	Define to 1 if the platform has stdio.h.
 */
 #ifndef HAS_STDIO
+#define HAS_STDIO 1
 #endif
 /* Configuration : HAS_PRINTF
 	Define to 1 if the platform has stdio.h and implements the printf function.
 */
 #ifndef HAS_PRINTF
+#define HAS_PRINTF 1
 #endif
 
 
@@ -49,14 +53,14 @@
  #ifdef __GNUC__
  #define COMPILER_VERSION "GCC"__VERSION__
  #else
- #define COMPILER_VERSION "Please put compiler version here (e.g. gcc 4.1)"
+ #error "Define COMPILER_VERSION"
  #endif
 #endif
 #ifndef COMPILER_FLAGS
  #define COMPILER_FLAGS FLAGS_STR /* "Please put compiler flags here (e.g. -o3)" */
 #endif
 #ifndef MEM_LOCATION
- #define MEM_LOCATION "STACK"
+ #define MEM_LOCATION "MALLOC"
 #endif
 
 /* Data Types :
@@ -105,7 +109,7 @@ typedef ee_u32 CORE_TICKS;
 	MEM_STACK - to allocate the data block on the stack (NYI).
 */
 #ifndef MEM_METHOD
-#define MEM_METHOD MEM_STACK
+#define MEM_METHOD MEM_MALLOC
 #endif
 
 /* Configuration : MULTITHREAD

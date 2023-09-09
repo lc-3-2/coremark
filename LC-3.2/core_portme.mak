@@ -40,7 +40,7 @@ COUT 	= -c
 
 PORT_CFILES = \
 	$(PORT_DIR)/core_portme \
-	$(PORT_DIR)/ee_printf
+	$(PORT_DIR)/portable_malloc
 PORT_SFILES =
 PORT_SRCS = $(addsuffix .c, $(PORT_CFILES)) $(addsuffix .s, $(PORT_SFILES))
 PORT_OBJS = $(addprefix $(OPATH), $(addsuffix $(OEXT), $(PORT_CFILES) $(PORT_SFILES)))
